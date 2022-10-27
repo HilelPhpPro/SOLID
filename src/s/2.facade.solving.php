@@ -1,6 +1,8 @@
 <?php
 namespace Facade2;
 
+use JetBrains\PhpStorm\Pure;
+
 class CPU
 {
     public function freeze()
@@ -53,6 +55,9 @@ class Computer
     const BOOT_ADDRESS = 0;
     const BOOT_SECTOR = 1;
     const SECTOR_SIZE = 16;
+    protected string $mouse;
+    protected string $display;
+    protected string $keyboard;
 
     /**
      * @var CPU
@@ -78,6 +83,7 @@ class Computer
         $this->cpu = $cpu;
         $this->mem = $mem;
         $this->hd = $hd;
+        //dooSomething
     }
 
     public function startComputer()
@@ -94,13 +100,36 @@ class Computer
         $this->cpu->jump(self::BOOT_ADDRESS);
         $this->cpu->execute();
     }
+
+    public function getMouse(): string
+    {
+        return $this->mouse;
+    }
+
+    public function setMouse(string $mouse)
+    {
+        $this->mouse = $mouse;
+    }
+
+}
+
+class Notebook extends Computer
+{
+    protected int $diagonal;
+
+    public function __construct(CPU $cpu, Memory $memory, Disk $disk, $diagonal = null)
+    {
+        parent::__construct($cpu,  $memory,  $disk);
+        $this->diagonal = $diagonal;
+    }
 }
 
 // Usage example
 $pc = new Computer(
     new CPU(),
     new Memory(),
-    new Disk()
+    new Disk(),
+    12
 );
 $pc->startComputer();
-
+$pc->setMouse('Logitech');

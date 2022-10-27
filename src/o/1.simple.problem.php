@@ -31,7 +31,13 @@ class Repository
     {
 
         // logic for save any entity
-
+        if (get_class($entity) === A::class) {
+            // custom logic
+        } elseif (get_class($entity) === B::class) {
+            // custom logic
+        } else {
+            // base logic
+        }
     }
 
     // .........

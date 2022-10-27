@@ -43,7 +43,9 @@ class User
     }
 }
 
-new User('John Doe', '0971112233');
+$u = new User('John Doe', '0971112233');
+$u->getPhone();
+
 
 namespace EC1;
 

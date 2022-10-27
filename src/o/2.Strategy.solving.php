@@ -92,6 +92,26 @@ class AnalyserMin implements IAnalyser
         return min($data);
     }
 }
+class AnalyserFirst implements IAnalyser
+{
+    /**
+     * @inheritdoc
+     */
+    public function analyse(array $data)
+    {
+        return current($data);
+    }
+}
+class AnalyserLast implements IAnalyser
+{
+    /**
+     * @inheritdoc
+     */
+    public function analyse(array $data)
+    {
+        return $data[count($data)-1];
+    }
+}
 
 
 $initialData = [
@@ -110,5 +130,11 @@ echo "Max: " . $analyser->analyse($initialData) . PHP_EOL;
 
 $analyser->changeStrategy(new AnalyserMin());
 echo "Min: " . $analyser->analyse($initialData) . PHP_EOL;
+
+$analyser->changeStrategy(new AnalyserFirst());
+echo "First: " . $analyser->analyse($initialData) . PHP_EOL;
+
+$analyser->changeStrategy(new AnalyserLast());
+echo "Last: " . $analyser->analyse($initialData) . PHP_EOL;
 
 

@@ -75,7 +75,7 @@ class PhonesBook
      */
     public static function checkAvailabilityPhone(Phone $phone)
     {
-        // logic check phone number for availability
+        return !in_array($phone->getNumber(), []);
     }
 
     // .....

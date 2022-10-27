@@ -34,14 +34,27 @@ class SimpleDownloader implements IDownloader
 function clientCode(IDownloader $downloader)
 {
     // ...
-    $downloader->download("http://example.com/");
-    $downloader->download("http://example2.com/");
-    $downloader->download("http://example.com/");
-    $downloader->download("http://example3.com/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://google.com/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://google.com/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://google.com/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://google.com/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://lms.ithillel.ua/");
+    $downloader->download("https://google.com/");
+    $downloader->download("https://lms.ithillel.ua/");
     // ...
 }
 
 
 $downloader = new SimpleDownloader();
 clientCode($downloader);
+
+exit;
 

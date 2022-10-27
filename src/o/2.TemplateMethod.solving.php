@@ -75,6 +75,16 @@ class AnalyserMin extends StatisticAnalyser
         return min($this->data);
     }
 }
+class AnalyserFirst extends StatisticAnalyser
+{
+    /**
+     * @inheritdoc
+     */
+    protected function useCustomLogic()
+    {
+        return current($this->data);
+    }
+}
 
 
 $initialData = [
@@ -92,5 +102,8 @@ echo "Max: " . $analyser->analyse() . PHP_EOL;
 
 $analyser = new AnalyserMin($initialData);
 echo "Min: " . $analyser->analyse() . PHP_EOL;
+
+$analyser = new AnalyserFirst($initialData);
+echo "First: " . $analyser->analyse() . PHP_EOL;
 
 

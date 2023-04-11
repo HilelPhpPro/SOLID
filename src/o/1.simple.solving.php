@@ -48,7 +48,7 @@ class Repository implements IRepository
     /**
      * @var IRepository[]
      */
-    protected $customRepositories = [];
+    protected array $customRepositories = [];
 
     /**
      * @param IRepository $repository
@@ -107,10 +107,24 @@ class RoleRepository implements IRepository
 }
 
 
+class ARepository implements IRepository
+{
+    // .........
+
+    public function save(AbstractEntity $entity)
+    {
+        // custom logic for save RoleEntity
+    }
+
+    // .........
+}
+
+
 $repository = new Repository();
 $repository
     ->addCustomRepository(new AccountRepository(), AccountEntity::class)
     ->addCustomRepository(new RoleRepository(), RoleEntity::class)
+    ->addCustomRepository(new ARepository(), A::class)
 ;
 
 $a = new A();

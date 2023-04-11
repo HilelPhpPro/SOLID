@@ -2,25 +2,25 @@
 
 class Rectangle
 {
-    protected $width;
-    protected $height;
+    protected int $width;
+    protected int $height;
 
-    public function setWidth($width)
+    public function setWidth(int $width)
     {
         $this->width = $width;
     }
 
-    public function setHeight($height)
+    public function setHeight(int $height)
     {
         $this->height = $height;
     }
 
-    public function getWidth()
+    public function getWidth(): int
     {
         return $this->width;
     }
 
-    public function getHeight()
+    public function getHeight(): int
     {
         return $this->height;
     }
@@ -41,7 +41,7 @@ class Square extends Rectangle
     }
 }
 
-function calculateRectangleSquare(Rectangle $rectangle, $width, $height)
+function calculateRectangleSquare(Rectangle $rectangle, $width, $height): float|int
 {
     $rectangle->setWidth($width);
     $rectangle->setHeight($height);

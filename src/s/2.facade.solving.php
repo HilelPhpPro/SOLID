@@ -26,6 +26,11 @@ class CPU
 
 class Memory
 {
+    const DEFAULT_MEMORY_SIZE = 4;
+    public function __construct(protected int $memorySize = self::DEFAULT_MEMORY_SIZE)
+    {
+
+    }
     /**
      * @param $address
      * @param $data
@@ -33,6 +38,15 @@ class Memory
     public function load($address, $data)
     {
         // Loading address $address with data: $data
+    }
+}
+class NewMemory extends Memory
+{
+    const DEFAULT_MEMORY_SIZE = 8;
+
+    public function __construct(protected int $memorySize = self::DEFAULT_MEMORY_SIZE)
+    {
+        parent::__construct($memorySize);
     }
 }
 
@@ -60,29 +74,17 @@ class Computer
     protected string $keyboard;
 
     /**
-     * @var CPU
-     */
-    protected $cpu;
-    /**
-     * @var Memory
-     */
-    protected $mem;
-    /**
-     * @var Disk
-     */
-    protected $hd;
-
-    /**
      * Computer constructor.
      * @param CPU $cpu
      * @param Memory $mem
      * @param Disk $hd
      */
-    public function __construct(CPU $cpu, Memory $mem, Disk $hd)
+    public function __construct(
+        protected CPU $cpu,
+        protected Memory $mem,
+        protected Disk $hd
+    )
     {
-        $this->cpu = $cpu;
-        $this->mem = $mem;
-        $this->hd = $hd;
         //dooSomething
     }
 
@@ -111,25 +113,55 @@ class Computer
         $this->mouse = $mouse;
     }
 
+    /**
+     * @return string
+     */
+    public function getDisplay(): string
+    {
+        return $this->display;
+    }
+
+    /**
+     * @param string $display
+     */
+    public function setDisplay(string $display): void
+    {
+        $this->display = $display;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyboard(): string
+    {
+        return $this->keyboard;
+    }
+
+    /**
+     * @param string $keyboard
+     */
+    public function setKeyboard(string $keyboard): void
+    {
+        $this->keyboard = $keyboard;
+    }
 }
 
 class Notebook extends Computer
 {
-    protected int $diagonal;
 
-    public function __construct(CPU $cpu, Memory $memory, Disk $disk, $diagonal = null)
+    public function __construct(CPU $cpu, Memory $memory, Disk $disk, protected ?int $diagonal = 13)
     {
         parent::__construct($cpu,  $memory,  $disk);
-        $this->diagonal = $diagonal;
     }
 }
 
 // Usage example
 $pc = new Computer(
     new CPU(),
-    new Memory(),
-    new Disk(),
-    12
+    new NewMemory(),
+    new Disk()
 );
 $pc->startComputer();
 $pc->setMouse('Logitech');
+$pc->setDisplay('Sony');
+$pc->setKeyboard('Logitech');

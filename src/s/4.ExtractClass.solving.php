@@ -86,12 +86,12 @@ class User
     /**
      * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * @var Phone
      */
-    protected $phone;
+    protected Phone $phone;
 
     /**
      * UserV1 constructor.
@@ -113,11 +113,11 @@ class User
     }
 
     /**
-     * @return Phone
+     * @return string
      */
-    public function getPhone(): Phone
+    public function getPhone(): string
     {
-        return $this->phone;
+        return (string)$this->phone;
     }
 }
 
@@ -125,4 +125,5 @@ $phone = new Phone('0971112233');
 
 PhonesBook::checkAvailabilityPhone($phone);
 
-new User('John Doe', $phone);
+$user = new User('John Doe', $phone);
+$user->getPhone();

@@ -6,12 +6,12 @@ class Book
     /**
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @var string
      */
-    protected $author;
+    protected string $author;
 
     /**
      * Book constructor.
@@ -57,5 +57,7 @@ class Book
 
 $firstBook = new Book("A Super Book", "John Doe");
 $firstBook->turnPage(2);
+$firstBook->printCurrentPage();
+$firstBook->turnPage();
 $firstBook->printCurrentPage();
 

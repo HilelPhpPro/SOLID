@@ -6,12 +6,12 @@ class Book
     /**
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @var string
      */
-    protected $author;
+    protected string $author;
 
     /**
      * Book constructor.
@@ -51,7 +51,7 @@ class Book
     /**
      * @return string
      */
-    public function getCurrentPage()
+    public function getCurrentPage(): string
     {
         return "current page content";
     }

@@ -9,7 +9,7 @@ class A
      */
     public function method1(int $a, string $b): bool
     {
-        return $a != $b ?: true;
+        return $a != $b;
     }
 }
 
@@ -26,7 +26,7 @@ class A1 extends A
         if ($a < 0) {
             throw new \Exception('$a < 0');
         }
-        return $a != $b ?: true;
+        return $a != $b;
     }
 }
 

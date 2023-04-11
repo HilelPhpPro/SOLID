@@ -44,7 +44,7 @@ class User
 }
 
 $u = new User('John Doe', '0971112233');
-$u->getPhone();
+echo $u->getPhone();
 
 
 namespace EC1;

@@ -39,7 +39,7 @@ class Computer
      * @param $size
      * @return string
      */
-    protected function discRead($sector, $size)
+    protected function discRead($sector, $size): string
     {
         return "data from sector $sector ($size)";
     }

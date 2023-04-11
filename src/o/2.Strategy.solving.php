@@ -16,12 +16,12 @@ interface IAnalyser
 /**
  * Class StatisticAnalyser -- this is CONTEXT for strategy
  */
-class StatisticAnalyser
+class StatisticAnalyser implements IAnalyser
 {
     /**
      * @var IAnalyser
      */
-    protected $analyser;
+    protected IAnalyser $analyser;
 
     /**
      * StatisticAnalyser constructor.

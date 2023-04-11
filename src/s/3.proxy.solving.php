@@ -52,18 +52,12 @@ function clientCode(IDownloader $downloader)
 class CachingDownloader implements IDownloader
 {
     /**
-     * @var SimpleDownloader
-     */
-    protected $downloader;
-
-    /**
      * @var string[]
      */
-    private $cache = [];
+    private array $cache = [];
 
-    public function __construct(SimpleDownloader $downloader)
+    public function __construct(protected IDownloader $downloader)
     {
-        $this->downloader = $downloader;
     }
 
     public function download(string $url): string

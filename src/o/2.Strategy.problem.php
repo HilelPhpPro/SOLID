@@ -21,8 +21,7 @@ $initialData = [
 
 $analyser = new StatisticAnalyser();
 
-echo $analyser->analyse($initialData) . PHP_EOL;
-
+//echo $analyser->analyse($initialData) . PHP_EOL;
 
 namespace Strategy1;
 

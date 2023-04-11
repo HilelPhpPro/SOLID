@@ -8,20 +8,14 @@ namespace TM2;
  */
 abstract class StatisticAnalyser
 {
-    /**
-     * @var array
-     */
-    protected $data;
-
-    public function __construct(array $data)
+    public function __construct(protected array $data)
     {
-        $this->data = $data;
     }
 
     /**
      * @return float|int
      */
-    protected abstract function useCustomLogic();
+    protected abstract function useCustomLogic(): float|int;
 
     /**
      * @return float|int
@@ -37,7 +31,7 @@ class AnalyserSum extends StatisticAnalyser
     /**
      * @inheritdoc
      */
-    protected function useCustomLogic()
+    protected function useCustomLogic(): float|int
     {
         return array_sum($this->data);
     }
@@ -48,7 +42,7 @@ class AnalyserAverage extends StatisticAnalyser
     /**
      * @inheritdoc
      */
-    protected function useCustomLogic()
+    protected function useCustomLogic(): float|int
     {
         return array_sum($this->data) / count($this->data);
     }
@@ -59,7 +53,7 @@ class AnalyserMax extends StatisticAnalyser
     /**
      * @inheritdoc
      */
-    protected function useCustomLogic()
+    protected function useCustomLogic(): float|int
     {
         return max($this->data);
     }
@@ -70,7 +64,7 @@ class AnalyserMin extends StatisticAnalyser
     /**
      * @inheritdoc
      */
-    protected function useCustomLogic()
+    protected function useCustomLogic(): float|int
     {
         return min($this->data);
     }
@@ -80,7 +74,7 @@ class AnalyserFirst extends StatisticAnalyser
     /**
      * @inheritdoc
      */
-    protected function useCustomLogic()
+    protected function useCustomLogic(): float|int
     {
         return current($this->data);
     }

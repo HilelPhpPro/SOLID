@@ -8,14 +8,14 @@ class Customer
     // ..........
 
     /**
-     * @var int
+     * @var ?int
      */
-    private $currentOrder;
+    private ?int $currentOrder = null;
 
     /**
      * @return bool
      */
-    public function buyItems()
+    public function buyItems(): bool
     {
         if (is_null($this->currentOrder)) {
             return false;
@@ -32,11 +32,14 @@ class Customer
 class OrderProcessor
 {
     /**
-     * @param $order
+     * @param int $order
      * @return bool
      */
     public function checkout(int $order) : bool
     {
+        // ..........
+        // ..........
+        // ..........
         // ..........
     }
 }
@@ -50,49 +53,5 @@ class OrderProcessor
 
 
 
-
-namespace DI1;
-
-
-class Customer
-{
-    // ..........
-
-    /**
-     * @var int
-     */
-    private $currentOrder;
-
-    /**
-     * @param OrderProcessor $processor
-     * @return bool
-     */
-    public function buyItems(OrderProcessor $processor)
-    {
-        if (is_null($this->currentOrder)) {
-            return false;
-        }
-
-        return $processor->checkout($this->currentOrder);
-    }
-
-    // ..........
-}
-
-
-class OrderProcessor
-{
-    /**
-     * @param $order
-     * @return bool
-     */
-    public function checkout(int $order) : bool
-    {
-        // ..........
-    }
-}
-
-$processor = new OrderProcessor();
 $customer = new Customer();
-
-$customer->buyItems($processor);
+$customer->buyItems();

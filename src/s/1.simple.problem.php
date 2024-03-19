@@ -3,52 +3,26 @@ namespace Simple1;
 
 class Book
 {
-    /**
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * @var string
-     */
-    protected string $author;
-
-    /**
-     * Book constructor.
-     * @param string $title
-     * @param string $author
-     */
-    public function __construct(string $title, string $author)
+    public function __construct(protected string $title, protected string $author)
     {
-        $this->title = $title;
-        $this->author = $author;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
-    /**
-     * @param int $pageCount
-     */
     public function turnPage(int $pageCount = 1)
     {
         // pointer to next page
     }
 
-    public function printCurrentPage()
+    public function printCurrentPage(): void
     {
         echo "current page content";
     }

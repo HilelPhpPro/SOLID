@@ -7,21 +7,10 @@ class Phone
     /**
      * @var string
      */
-    protected $operator;
+    protected  string $operator;
 
-    /**
-     * @var string
-     */
-    protected $number;
-
-    /**
-     * Phone constructor.
-     * @param $number
-     * @throws \Exception
-     */
-    public function __construct($number)
+    public function __construct(protected string $number)
     {
-        $this->number = $number;
         $this->validateNumber();
         $this->parseNumber();
     }
@@ -126,4 +115,4 @@ $phone = new Phone('0971112233');
 PhonesBook::checkAvailabilityPhone($phone);
 
 $user = new User('John Doe', $phone);
-$user->getPhone();
+echo $user->getPhone();

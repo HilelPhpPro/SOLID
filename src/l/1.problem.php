@@ -1,37 +1,47 @@
 <?php
 
-class A
+abstract class AA
 {
     /**
      * @param int $a
-     * @param string $b
+     * @param int $b
      * @return bool
      */
-    public function method1(int $a, string $b): bool
+    public function method1(int $a, int $b): bool
     {
-        return $a != $b;
+        try {
+            $this->validate($a);
+            $res = $a != $b;
+        } catch (\Exception) {
+            $res = false;
+        }
+        return $res;
+    }
+
+    abstract protected function validate(int $a): bool;
+}
+class A extends AA
+{
+
+    protected function validate(int $a): bool
+    {
+        return true;
     }
 }
 
 class A1 extends A
 {
-    /**
-     * @param int $a
-     * @param string $b
-     * @return bool
-     * @throws Exception
-     */
-    public function method1(int $a, string $b): bool
+    protected function validate(int $a): bool
     {
         if ($a < 0) {
             throw new \Exception('$a < 0');
         }
-        return $a != $b;
+        return true;
     }
 }
 
 function userCases (A $a) {
-    var_dump($a->method1(-1, 'test'));
+    var_dump($a->method1(-1, -1));
 }
 
 

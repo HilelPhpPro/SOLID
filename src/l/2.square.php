@@ -50,3 +50,5 @@ function calculateRectangleSquare(Rectangle $rectangle, $width, $height): float|
 
 calculateRectangleSquare(new Rectangle, 4, 5); // 20
 calculateRectangleSquare(new Square, 4, 5); // 25 ???
+
+

@@ -63,7 +63,7 @@ interface IPrinter
     /**
      * @param string $pageContent
      */
-    public function printPage(string $pageContent);
+    public function printPage(Book $book);
 }
 
 
@@ -72,9 +72,9 @@ class PlainTextPrinter implements IPrinter
     /**
      * @inheritdoc
      */
-    public function printPage(string $pageContent)
+    public function printPage(Book $book): void
     {
-        echo $pageContent;
+        echo $book->getCurrentPage();
     }
 }
 
@@ -84,9 +84,9 @@ class HtmlPrinter implements IPrinter
     /**
      * @inheritdoc
      */
-    public function printPage(string $pageContent)
+    public function printPage(Book $book): void
     {
-        echo '<div style="single-page">' . $pageContent . '</div>';
+        echo '<div style="single-page">' . $book->getCurrentPage() . '</div>';
     }
 
 }
@@ -98,5 +98,7 @@ $printer = new PlainTextPrinter();
 // or
 $printer = new HtmlPrinter();
 
-$printer->printPage($firstBook->getCurrentPage());
+$printer->printPage($firstBook);
+$firstBook->turnPage(3);
+$printer->printPage($firstBook);
 

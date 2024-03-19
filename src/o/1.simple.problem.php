@@ -65,9 +65,6 @@ $repository->save($c);
 
 
 
-
-
-
 namespace Simple1;
 
 abstract class AbstractEntity

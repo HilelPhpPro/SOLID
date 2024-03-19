@@ -71,8 +71,7 @@ class Repository implements IRepository
             /**
              * @var IRepository $repository
              */
-            $repository = $this->customRepositories[$className];
-            $repository->save($entity);
+            $this->customRepositories[$className]->save($entity);
         } else {
             // logic for save any entity
         }

@@ -5,25 +5,8 @@ namespace EC0;
 
 class User
 {
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    /**
-     * UserV1 constructor.
-     * @param string $name
-     * @param string $phone
-     */
-    public function __construct(string $name, string $phone)
+    public function __construct(protected string $name, protected string $phone)
     {
-        $this->name = $name;
-        $this->phone = $phone;
     }
 
     /**

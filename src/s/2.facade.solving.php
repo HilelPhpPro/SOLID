@@ -88,7 +88,7 @@ class Computer
         //dooSomething
     }
 
-    public function startComputer()
+    public function startComputer(): void
     {
         $this->cpu->freeze();
         $dataForStart = $this->hd->read(
@@ -148,8 +148,9 @@ class Computer
 
 class Notebook extends Computer
 {
+    const DEFAULT_DIAGONAL = 13;
 
-    public function __construct(CPU $cpu, Memory $memory, Disk $disk, protected ?int $diagonal = 13)
+    public function __construct(CPU $cpu, Memory $memory, Disk $disk, protected int $diagonal = self::DEFAULT_DIAGONAL)
     {
         parent::__construct($cpu,  $memory,  $disk);
     }
@@ -158,7 +159,7 @@ class Notebook extends Computer
 // Usage example
 $pc = new Computer(
     new CPU(),
-    new NewMemory(),
+    new NewMemory(16),
     new Disk()
 );
 $pc->startComputer();

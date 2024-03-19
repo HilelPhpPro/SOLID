@@ -8,15 +8,15 @@ class Customer
     // ..........
 
     /**
-     * @var int
+     * @var ?int
      */
-    private $currentOrder;
+    private ?int $currentOrder = null;
 
     /**
      * @param IOrderProcessor $processor
      * @return bool
      */
-    public function buyItems(IOrderProcessor $processor)
+    public function buyItems(IOrderProcessor $processor): bool
     {
         if (is_null($this->currentOrder)) {
             return false;

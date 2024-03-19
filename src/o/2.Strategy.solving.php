@@ -9,7 +9,7 @@ interface IAnalyser
      * @param array $data
      * @return float|int
      */
-    public function analyse(array $data);
+    public function analyse(array $data): int|float;
 
 }
 
@@ -18,24 +18,14 @@ interface IAnalyser
  */
 class StatisticAnalyser implements IAnalyser
 {
-    /**
-     * @var IAnalyser
-     */
-    protected IAnalyser $analyser;
-
-    /**
-     * StatisticAnalyser constructor.
-     * @param IAnalyser $analyser
-     */
-    public function __construct(IAnalyser $analyser)
+    public function __construct(protected IAnalyser $analyser)
     {
-        $this->analyser = $analyser;
     }
 
     /**
      * @param IAnalyser $analyser
      */
-    public function changeStrategy(IAnalyser $analyser)
+    public function changeStrategy(IAnalyser $analyser): void
     {
         $this->analyser = $analyser;
     }
@@ -44,7 +34,7 @@ class StatisticAnalyser implements IAnalyser
      * @param array $data
      * @return float|int
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return $this->analyser->analyse($data);
     }
@@ -55,7 +45,7 @@ class AnalyserSum implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return array_sum($data);
     }
@@ -66,7 +56,7 @@ class AnalyserAverage implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return array_sum($data) / count($data);
     }
@@ -77,7 +67,7 @@ class AnalyserMax implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return max($data);
     }
@@ -87,7 +77,7 @@ class AnalyserMin implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return min($data);
     }
@@ -97,7 +87,7 @@ class AnalyserFirst implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return current($data);
     }
@@ -107,34 +97,28 @@ class AnalyserLast implements IAnalyser
     /**
      * @inheritdoc
      */
-    public function analyse(array $data)
+    public function analyse(array $data): int|float
     {
         return $data[count($data)-1];
     }
 }
 
 
-$initialData = [
-    3, 2, 1, 4, 5, 6, 2, 1, 4, 5
-];
+
+
+function admin(StatisticAnalyser $analyser){
+    $initialData = [
+        3, 2, 1, 4, 5, 6, 2, 1, 4, 5
+    ];
+    echo $analyser->analyse($initialData) . PHP_EOL;
+
+}
+
+
 
 $analyser = new StatisticAnalyser(new AnalyserSum());
-
-echo "Total: " . $analyser->analyse($initialData) . PHP_EOL;
+admin($analyser);
 
 $analyser->changeStrategy(new AnalyserAverage());
-echo "Average: " . $analyser->analyse($initialData) . PHP_EOL;
-
-$analyser->changeStrategy(new AnalyserMax());
-echo "Max: " . $analyser->analyse($initialData) . PHP_EOL;
-
-$analyser->changeStrategy(new AnalyserMin());
-echo "Min: " . $analyser->analyse($initialData) . PHP_EOL;
-
-$analyser->changeStrategy(new AnalyserFirst());
-echo "First: " . $analyser->analyse($initialData) . PHP_EOL;
-
-$analyser->changeStrategy(new AnalyserLast());
-echo "Last: " . $analyser->analyse($initialData) . PHP_EOL;
-
+admin($analyser);
 

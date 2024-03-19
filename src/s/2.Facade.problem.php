@@ -29,8 +29,9 @@ class Computer
      * @param $address
      * @param $data
      */
-    protected function memoryLoad($address, $data)
+    protected function memoryLoad($address, $data): void
     {
+        $memorySize = 8;
         // Loading address $address with data: $data
     }
 
@@ -44,7 +45,7 @@ class Computer
         return "data from sector $sector ($size)";
     }
 
-    public function startComputer()
+    public function startComputer(): void
     {
         $this->cpuFreeze();
         $dataForStart = $this->discRead(
